@@ -1,0 +1,132 @@
+/* Theme variables and base styles */
+:root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #212529;
+    --muted: #6c757d;
+    --accent: #0d6efd;
+}
+
+body.dark-theme {
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --text: #e9ecef;
+    --muted: #adb5bd;
+    --accent: #66aaff;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 250ms ease, color 250ms ease;
+}
+
+/* Navbar and card styles */
+#mainNavbar {
+    background-color: transparent;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+#tasksGrid .task-card { display: flex; }
+.badge-category { font-size: 0.75rem; }
+
+/* Animations */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.slide-in { animation: slideIn 400ms ease both; }
+.slide-in-delay { animation: slideIn 600ms ease both; }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(13,110,253,0.12); }
+    70% { box-shadow: 0 0 0 8px rgba(13,110,253,0.04); }
+    100% { box-shadow: 0 0 0 0 rgba(13,110,253,0); }
+}
+.new-pulse { animation: pulse 1s ease; }
+
+@media (max-width: 576px) {
+    .card { border-radius: 0.4rem; }
+}
+
+/* Utility */
+.fade-out {
+    transition: opacity 300ms ease, transform 300ms ease;
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+/* Dark-mode & theme-aware Bootstrap overrides */
+body.dark-theme #mainNavbar,
+body.dark-theme #mainNavbar .navbar-brand,
+body.dark-theme #mainNavbar .nav-link,
+body.dark-theme #mainNavbar .btn,
+body.dark-theme .navbar-toggler-icon {
+    color: var(--text) !important;
+    background-color: transparent !important;
+}
+
+.card,
+.modal-content,
+.dropdown-menu {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+}
+
+body.dark-theme .card { border-color: rgba(255,255,255,0.06) !important; }
+
+.text-muted { color: var(--muted) !important; }
+
+.form-label,
+label { color: var(--text); }
+
+.form-control,
+.form-select,
+textarea {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: rgba(0,0,0,0.08);
+}
+body.dark-theme .form-control,
+body.dark-theme .form-select,
+body.dark-theme textarea {
+    border-color: rgba(255,255,255,0.08) !important;
+}
+
+.modal-content { border: 1px solid rgba(0,0,0,0.06); }
+body.dark-theme .modal-content { border-color: rgba(255,255,255,0.06) !important; }
+
+.badge-category {
+    background-color: var(--accent) !important;
+    color: var(--card-bg) !important;
+}
+
+.btn,
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-warning,
+.btn-outline-danger,
+.btn-primary,
+.btn-secondary {
+    color: var(--text) !important;
+}
+
+.card-footer small,
+small { color: var(--muted) !important; }
+
+body.dark-theme #mainNavbar { background-color: transparent !important; }
+
+::placeholder { color: rgba(255,255,255,0.5); }
+body:not(.dark-theme) ::placeholder { color: rgba(0,0,0,0.45); }
